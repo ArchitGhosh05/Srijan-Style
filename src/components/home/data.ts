@@ -1,140 +1,91 @@
-export type Product = {
-  id: number;
-  name: string;
-  brand: string;
-  price: number;
-  originalPrice: number;
-  rating: number;
-  primaryImage: string;
-  alternateImage: string;
-  badge?: string;
-};
-
-export type Category = {
-  id: number;
-  title: string;
-  icon: "Shirt" | "Watch" | "Sparkles" | "Footprints" | "Gem" | "Backpack";
-  color: string;
-};
-
 export const navLinks = [
-  "New In",
-  "Men",
-  "Women",
-  "Sneakers",
-  "Accessories",
-  "Studio Edit",
-  "Sale",
+  { label: "About", href: "#about" },
+  { label: "Collections", href: "#collections" },
+  { label: "Stores", href: "#stores" },
+  { label: "Contact", href: "#contact" },
 ];
 
-export const categories: Category[] = [
-  { id: 1, title: "Streetwear", icon: "Shirt", color: "from-blue-500 to-indigo-600" },
-  { id: 2, title: "Watches", icon: "Watch", color: "from-slate-800 to-slate-600" },
-  { id: 3, title: "Beauty", icon: "Sparkles", color: "from-rose-500 to-orange-500" },
-  { id: 4, title: "Footwear", icon: "Footprints", color: "from-cyan-500 to-blue-600" },
-  { id: 5, title: "Jewelry", icon: "Gem", color: "from-indigo-500 to-violet-600" },
-  { id: 6, title: "Bags", icon: "Backpack", color: "from-orange-500 to-red-500" },
+export const marqueeItems = [
+  "Style Without Limits",
+  "Everyday Luxury",
+  "Crafted for India",
+  "New Season. New Energy.",
+  "Wear the Movement",
+  "Srijan Style",
 ];
 
-export const products: Product[] = [
+export const brandPillars = [
+  {
+    title: "Accessible Fashion",
+    description: "Premium aesthetics at honest prices — fashion that feels elevated, not exclusive.",
+  },
+  {
+    title: "Trend-Forward",
+    description: "Fresh drops inspired by global streetwear, Indian youth culture, and runway energy.",
+  },
+  {
+    title: "Community First",
+    description: "Built for creators, students, and dreamers who express identity through what they wear.",
+  },
+];
+
+export const collections = [
   {
     id: 1,
-    name: "Oversized Utility Jacket",
-    brand: "Srijan Atelier",
-    price: 3899,
-    originalPrice: 5999,
-    rating: 4.7,
-    primaryImage:
-      "https://images.unsplash.com/photo-1551232864-3f0890e580d9?q=80&w=1200&auto=format&fit=crop",
-    alternateImage:
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=1200&auto=format&fit=crop",
-    badge: "Trending",
+    title: "Urban Core",
+    season: "SS 26",
+    tagline: "Structured silhouettes meet street attitude",
+    image:
+      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1400&auto=format&fit=crop",
+    accent: "#1E3A8A",
   },
   {
     id: 2,
-    name: "Monochrome Tailored Set",
-    brand: "Noir Line",
-    price: 4599,
-    originalPrice: 7499,
-    rating: 4.8,
-    primaryImage:
-      "https://images.unsplash.com/photo-1543076447-215ad9ba6923?q=80&w=1200&auto=format&fit=crop",
-    alternateImage:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200&auto=format&fit=crop",
-    badge: "Premium",
+    title: "Soft Motion",
+    season: "SS 26",
+    tagline: "Fluid fabrics for effortless everyday wear",
+    image:
+      "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1400&auto=format&fit=crop",
+    accent: "#FF416C",
   },
   {
     id: 3,
-    name: "Aurora Knit Co-ord",
-    brand: "Urban Blend",
-    price: 2799,
-    originalPrice: 3999,
-    rating: 4.5,
-    primaryImage:
-      "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=1200&auto=format&fit=crop",
-    alternateImage:
-      "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1200&auto=format&fit=crop",
+    title: "Night Edit",
+    season: "Drop 02",
+    tagline: "Bold tones, sharper lines, louder presence",
+    image:
+      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1400&auto=format&fit=crop",
+    accent: "#0F172A",
   },
   {
     id: 4,
-    name: "Edge Runner Sneakers",
-    brand: "Srijan Move",
-    price: 5199,
-    originalPrice: 7999,
-    rating: 4.9,
-    primaryImage:
-      "https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=1200&auto=format&fit=crop",
-    alternateImage:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop",
-    badge: "New",
-  },
-  {
-    id: 5,
-    name: "Slate Cargo Trousers",
-    brand: "Transit Co.",
-    price: 2299,
-    originalPrice: 3299,
-    rating: 4.4,
-    primaryImage:
-      "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=1200&auto=format&fit=crop",
-    alternateImage:
-      "https://images.unsplash.com/photo-1485462537746-965f33f7f6a7?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: 6,
-    name: "Minimal Luxe Handbag",
-    brand: "Srijan Aura",
-    price: 3499,
-    originalPrice: 4999,
-    rating: 4.6,
-    primaryImage:
-      "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?q=80&w=1200&auto=format&fit=crop",
-    alternateImage:
-      "https://images.unsplash.com/photo-1576053139778-7e32f2ae3cfd?q=80&w=1200&auto=format&fit=crop",
-    badge: "Best Seller",
+    title: "Weekend State",
+    season: "Drop 03",
+    tagline: "Relaxed fits designed for movement and mood",
+    image:
+      "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1400&auto=format&fit=crop",
+    accent: "#FF4B2B",
   },
 ];
 
-export const heroTiles = [
-  {
-    title: "Street-Luxe Drops",
-    subtitle: "Monsoon 26 Collection",
-    image:
-      "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop",
-    className: "col-span-12 lg:col-span-7 row-span-2",
-  },
-  {
-    title: "Tailored Movement",
-    subtitle: "Workwear Reimagined",
-    image:
-      "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=1200&auto=format&fit=crop",
-    className: "col-span-12 sm:col-span-6 lg:col-span-5",
-  },
-  {
-    title: "Weekend Edit",
-    subtitle: "Relaxed silhouettes",
-    image:
-      "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1200&auto=format&fit=crop",
-    className: "col-span-12 sm:col-span-6 lg:col-span-5",
-  },
+export const galleryImages = [
+  "https://images.unsplash.com/photo-1551232864-3f0890e580d9?q=80&w=900&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1543076447-215ad9ba6923?q=80&w=900&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1514996937319-344454492b37?q=80&w=900&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=900&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=900&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=900&auto=format&fit=crop",
+];
+
+export const stores = [
+  { city: "Mumbai", area: "Bandra West", status: "Open Now" },
+  { city: "Delhi", area: "Connaught Place", status: "Open Now" },
+  { city: "Bengaluru", area: "Indiranagar", status: "Opening Soon" },
+  { city: "Pune", area: "Koregaon Park", status: "Opening Soon" },
+];
+
+export const stats = [
+  { value: "50+", label: "Cities" },
+  { value: "120+", label: "Stores" },
+  { value: "2M+", label: "Style Lovers" },
 ];

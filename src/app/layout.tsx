@@ -13,8 +13,8 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Srijan Mart | Premium Fashion Discovery",
-  description: "High-end, interactive fashion and lifestyle e-commerce experience for Srijan Style.",
+  title: "Srijan Style | Wear the Movement",
+  description: "A modern fashion brand for young India. Discover collections, visit our stores, and join the Srijan Style community.",
 };
 
 export default function RootLayout({
@@ -23,8 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${manrope.variable} ${jakarta.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[#F8FAFC] text-slate-900">{children}</body>
+    <html lang="en" className={`${manrope.variable} ${jakarta.variable} h-full scroll-smooth antialiased`}>
+      <body className="min-h-full flex flex-col bg-white text-slate-900">{children}</body>
     </html>
   );
 }

@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
+  --background: #ffffff;
   --foreground: #0f172a;
+  --brand-blue: #1e3a8a;
+  --brand-coral: #ff416c;
+  --brand-dark: #0f172a;
 }
 
 @theme inline {
@@ -10,6 +13,10 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-manrope);
   --font-display: var(--font-jakarta);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 * {
@@ -20,6 +27,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-manrope), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
 .sheen-button {
@@ -34,19 +42,53 @@ body {
   left: -160%;
   width: 45%;
   height: 320%;
-  background: linear-gradient(to right, transparent, rgb(255 255 255 / 0.5), transparent);
+  background: linear-gradient(to right, transparent, rgb(255 255 255 / 0.45), transparent);
   transform: rotate(24deg);
-  animation: sheen 3.8s ease-in-out infinite;
+  animation: sheen 4s ease-in-out infinite;
 }
 
 @keyframes sheen {
-  0% {
-    left: -160%;
-  }
+  0%,
   35% {
     left: -160%;
   }
   100% {
     left: 240%;
   }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes gallery-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+.gallery-track {
+  animation: gallery-scroll 40s linear infinite;
+}
+
+.marquee-track:hover,
+.gallery-track:hover {
+  animation-play-state: paused;
+}
+
+::selection {
+  background: #ff416c33;
+  color: #0f172a;
 }

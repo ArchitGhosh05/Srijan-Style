@@ -1,64 +1,106 @@
 "use client";
 
-import { Heart, Search, ShoppingBag, User } from "lucide-react";
-import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { navLinks } from "@/components/home/data";
 
 export function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <motion.header
-      initial={{ y: -24, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      className="sticky top-0 z-50 w-full border-b border-white/30 bg-white/60 backdrop-blur-md"
-    >
-      <div className="mx-auto flex h-20 w-full max-w-[1440px] items-center gap-3 px-4 sm:px-8 lg:px-12">
-        <a
-          href="#"
-          className="group flex shrink-0 items-center rounded-xl bg-white/70 px-1 py-1 transition"
-        >
-          <div className="relative h-[52px] w-[220px] sm:h-[56px] sm:w-[250px]">
-            <Image src="/srijan-style-logo-clean.png" alt="Srijan Style" fill className="object-contain object-left" priority />
-          </div>
-        </a>
-
-        <nav className="hidden flex-1 justify-center gap-7 lg:flex">
-          {navLinks.map((item) => (
-            <a
-              key={item}
-              href="#"
-              className="group relative text-sm font-medium text-slate-700 transition-colors hover:text-[#1E3A8A]"
-            >
-              {item}
-              <span className="absolute inset-x-0 -bottom-1 h-0.5 origin-left scale-x-0 rounded-full bg-[#FF416C] transition-transform duration-300 group-hover:scale-x-100" />
-            </a>
-          ))}
-        </nav>
-
-        <div className="flex flex-1 items-center justify-end gap-2 sm:gap-3">
-          <label className="group relative hidden h-11 w-[190px] overflow-hidden rounded-full border border-slate-200 bg-white/90 transition-all duration-500 focus-within:w-[260px] focus-within:border-[#1E3A8A] focus-within:shadow-lg focus-within:shadow-blue-500/20 md:flex">
-            <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-slate-400 transition-colors group-focus-within:text-[#1E3A8A]" />
-            <input
-              placeholder="Search brands, styles, trends"
-              className="h-full w-full bg-transparent pl-11 pr-4 text-sm text-slate-800 outline-none placeholder:text-slate-400"
+    <>
+      <motion.header
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "border-b border-white/10 bg-[#0F172A]/80 py-3 backdrop-blur-xl"
+            : "bg-transparent py-5"
+        }`}
+      >
+        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-4 sm:px-8 lg:px-12">
+          <a href="#" className="relative h-10 w-[180px] sm:h-12 sm:w-[210px]">
+            <Image
+              src="/srijan-style-logo-clean.png"
+              alt="Srijan Style"
+              fill
+              className={`object-contain object-left transition-all duration-500 ${scrolled ? "brightness-0 invert" : ""}`}
+              priority
             />
-          </label>
+          </a>
 
-          {[Heart, ShoppingBag, User].map((Icon, index) => (
-            <button
-              key={index}
-              className="relative rounded-full border border-slate-200 bg-white p-2.5 text-slate-700 transition hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-md"
+          <nav className="hidden items-center gap-10 lg:flex">
+            {navLinks.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                className="group relative text-sm font-medium tracking-wide text-white/80 transition hover:text-white"
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 h-px w-0 bg-[#FF416C] transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="#stores"
+              className="hidden rounded-full border border-white/30 px-5 py-2.5 text-sm font-medium text-white transition hover:border-white hover:bg-white/10 sm:inline-flex"
             >
-              <Icon className="size-4" />
-              {index < 2 && (
-                <span className="absolute -right-1 -top-1 flex size-4 items-center justify-center rounded-full bg-[#FF416C] text-[10px] font-semibold text-white">
-                  {index + 1}
-                </span>
-              )}
+              Find a Store
+            </a>
+            <button
+              onClick={() => setMenuOpen(true)}
+              className="rounded-full border border-white/30 p-2.5 text-white lg:hidden"
+              aria-label="Open menu"
+            >
+              <Menu className="size-5" />
             </button>
-          ))}
+          </div>
         </div>
-      </div>
-    </motion.header>
+      </motion.header>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] bg-[#0F172A]/95 backdrop-blur-xl lg:hidden"
+          >
+            <div className="flex items-center justify-between px-6 py-5">
+              <span className="text-sm font-medium tracking-[0.2em] text-white/60">MENU</span>
+              <button onClick={() => setMenuOpen(false)} aria-label="Close menu">
+                <X className="size-6 text-white" />
+              </button>
+            </div>
+            <nav className="flex flex-col gap-8 px-6 pt-8">
+              {navLinks.map((item, i) => (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.08 }}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-3xl font-semibold text-white"
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

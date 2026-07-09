@@ -1,47 +1,57 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Globe, Mail, MapPin } from "lucide-react";
 import Image from "next/image";
+
+const footerLinks = {
+  Brand: ["About", "Collections", "Careers", "Press"],
+  Visit: ["Store Locator", "New Openings", "Events"],
+  Support: ["Contact", "FAQ", "Privacy"],
+};
 
 export function Footer() {
   return (
-    <footer className="bg-[#0F172A]">
-      <div className="mx-auto grid w-full max-w-[1440px] gap-8 px-4 py-12 text-slate-300 sm:grid-cols-2 sm:px-8 lg:grid-cols-4 lg:px-12">
-        <div>
-          <div className="inline-flex rounded-xl bg-white px-3 py-2 shadow-lg shadow-black/20">
-            <div className="relative h-11 w-[212px]">
-              <Image src="/srijan-style-logo-clean.png" alt="Srijan Style" fill className="object-contain object-left" />
+    <footer className="border-t border-white/10 bg-[#0F172A]">
+      <div className="mx-auto w-full max-w-[1440px] px-4 py-16 sm:px-8 lg:px-12">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="lg:col-span-2">
+            <div className="inline-flex rounded-xl bg-white px-3 py-2">
+              <div className="relative h-10 w-[190px]">
+                <Image src="/srijan-style-logo-clean.png" alt="Srijan Style" fill className="object-contain object-left" />
+              </div>
+            </div>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/50">
+              A modern fashion brand for young India — style, culture, and community in every thread.
+            </p>
+            <div className="mt-6 flex gap-3">
+              {[Globe, Mail, MapPin].map((Icon, i) => (
+                <button
+                  key={i}
+                  className="rounded-full border border-white/15 p-2.5 text-white/60 transition hover:border-white/30 hover:text-white"
+                >
+                  <Icon className="size-4" />
+                </button>
+              ))}
             </div>
           </div>
-          <p className="mt-3 text-sm leading-6 text-slate-400">
-            High-conversion premium fashion destination built for modern lifestyle shoppers.
-          </p>
+
+          {Object.entries(footerLinks).map(([title, links]) => (
+            <div key={title}>
+              <p className="text-sm font-semibold text-white">{title}</p>
+              <ul className="mt-4 space-y-2.5">
+                {links.map((link) => (
+                  <li key={link}>
+                    <a href="#" className="text-sm text-white/50 transition hover:text-white">
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
-        <div>
-          <p className="text-sm font-semibold text-white">Shop</p>
-          <ul className="mt-3 space-y-2 text-sm text-slate-400">
-            <li>Men</li>
-            <li>Women</li>
-            <li>Footwear</li>
-            <li>Accessories</li>
-          </ul>
-        </div>
-        <div>
-          <p className="text-sm font-semibold text-white">Support</p>
-          <ul className="mt-3 space-y-2 text-sm text-slate-400">
-            <li>Track Order</li>
-            <li>Returns</li>
-            <li>FAQ</li>
-            <li>Contact</li>
-          </ul>
-        </div>
-        <div>
-          <p className="text-sm font-semibold text-white">Connect</p>
-          <div className="mt-3 flex gap-3">
-            {[Mail, Phone, MapPin].map((Icon, i) => (
-              <button key={i} className="rounded-full border border-slate-700 p-2.5 transition hover:border-slate-500">
-                <Icon className="size-4" />
-              </button>
-            ))}
-          </div>
+
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
+          <p className="text-xs text-white/40">&copy; {new Date().getFullYear()} Srijan Style. All rights reserved.</p>
+          <p className="text-xs text-white/40">Designed for awareness. Built for culture.</p>
         </div>
       </div>
     </footer>
